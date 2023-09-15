@@ -4,11 +4,12 @@ import Cards from "../Cards/Cards";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
+import SearchBar from "../SearchBar/SearchBar";
 
 
 export default function HomePage (props){
  
-    const {gameByName} = props;
+    const {gameByName, onSearch , setGameByName} = props;
     
     const [games, setGames] = useState([]);
 
@@ -33,6 +34,7 @@ export default function HomePage (props){
 
     return(
         <div>
+            <SearchBar onSearch={onSearch} setGameByName={setGameByName}></SearchBar>
             <h1>SOY EL HOME</h1>
             <ul>
                 <li>SearchBar: un input de búsqueda para encontrar videojuegos por nombre.</li>

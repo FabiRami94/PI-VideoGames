@@ -32,10 +32,14 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== '/' ? <NavBar onSearch={onSearch} setGameByName={setGameByName}></NavBar> : null}
+      {location.pathname !== '/' ? <NavBar></NavBar> : null}
       <Routes>
         <Route path='/' element={<LandingPage></LandingPage>}></Route>
-        <Route path='/home' element={<HomePage gameByName={gameByName}></HomePage>}></Route>
+        <Route path='/home' element={<HomePage 
+          gameByName={gameByName} 
+          onSearch={onSearch} 
+          setGameByName={setGameByName}
+          ></HomePage>}></Route>
         <Route path='/detail/:id' element={<DetailPage></DetailPage>}></Route>
         <Route path='/form' element={<FormPage></FormPage>}></Route>
       </Routes>

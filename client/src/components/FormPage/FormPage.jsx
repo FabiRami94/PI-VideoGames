@@ -1,7 +1,36 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
 export default function FormPage () {
+
+    const [genres, setGenres] = useState([]);
+
+    const [newGameData, setNewGameData] = useState({
+        name: '',
+        description: '',
+
+    });
+
+    const handleChange = (event) => {
+        setNewGameData({...newGameData, [event.target.name] : event.target.value});
+        console.log(event.target.value)
+    }
+
+    const handleChecked = (event) => {
+        
+        console.log('hey') 
+    }
+
+    useEffect(()=>{
+        axios.get('http://localhost:3001/genres')
+        .then((response) => {
+            const genreData = response.data;
+            setGenres(genreData);
+        })
+    },[]);
+
+
+
     return(
         <div>
             <h1>FORM PAGE     
@@ -21,20 +50,20 @@ export default function FormPage () {
                     <li>Botón para crear el nuevo videojuego.</li>
                 </ul>
                 <div>
-                    <form style={{display: 'flex', flexDirection: 'column'}}>
+                    <form style={{display: 'flex', flexDirection: 'column'}} >
                         <label>Name:</label>
-                        <input placeholder="Write a game name..."></input>
+                        <input onChange={handleChange} name='name' value={newGameData.name} placeholder="Write a game name..."></input>
                         <label>Image:</label>
                         <input type="file" placeholder="Upload a game image..."></input>
                         <label>Description:</label>
-                        <input type="text" placeholder="Write a game name..."></input>
+                        <input onChange={handleChange} type="text" placeholder="Write a game name..." name="description" value={newGameData.description}></input>
                         <label>Platforms:</label>
                         {/* mejorar despues con Map */}
                             <label> 
                                 <input type="checkbox" name="opcion1" value="Opción 1" /> Play 5
                             </label>
                             <label>
-                                <input type="checkbox" name="opcion2" value="Opción 2" /> Play 4
+                                <input  type="checkbox" name="opcion2" value="Opción 2" /> Play 4
                             </label>
                             <label>
                                 <input type="checkbox" name="opcion3" value="Opción 3" /> Xbox
@@ -48,19 +77,11 @@ export default function FormPage () {
                         <input type="number" placeholder="Rating..."></input>
                         <label>Genres:</label>
                         <input placeholder="Write a game name..."></input>
-                         {/* mejorar despues con Map */}
+                        {genres.map((genre) => (
                             <label> 
-                                <input type="checkbox" name="opcion1" value="Opción 1" /> Adventure
+                                <input type="checkbox" name={genre.id} value={genre.id}/> {genre.name}      
                             </label>
-                            <label>
-                                <input type="checkbox" name="opcion2" value="Opción 2" /> Shooter
-                            </label>
-                            <label>
-                                <input type="checkbox" name="opcion3" value="Opción 3" /> Cards
-                            </label>
-                            <label>
-                                <input type="checkbox" name="opcion4" value="Opción 4" /> RPG
-                            </label>
+                        ))}
                         <button>CREATE VIDEO GAME</button>
                     </form>
                 </div>

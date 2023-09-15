@@ -7,15 +7,10 @@ const getGenres = require('../controllers/getGenres');
 const getVideoGames = require('../controllers/getVideoGames');
 const createVideoGames = require('../controllers/createVideoGames');
 
-
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-
-router.get('/', (req, res) => {
-    res.send('Hola aprende perro...')
-})
 
 router.post('/createvideogame', createVideoGames);
 

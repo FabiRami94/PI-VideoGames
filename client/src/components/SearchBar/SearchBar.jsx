@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from 'axios';
 
 export default function SearchBar({onSearch, setGameByName}){
 
@@ -7,7 +6,6 @@ export default function SearchBar({onSearch, setGameByName}){
 
     function handleChange (event) {
         setName(event.target.value)
-        console.log(event.target.value)
     }
 
     const search = () => {
