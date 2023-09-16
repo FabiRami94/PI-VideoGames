@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
 import SearchBar from "../SearchBar/SearchBar";
+import styles from "./HomePage.module.css";
 
 
 export default function HomePage (props){
@@ -36,6 +37,9 @@ export default function HomePage (props){
         <div>
             <SearchBar onSearch={onSearch} setGameByName={setGameByName}></SearchBar>
             <h1>SOY EL HOME</h1>
+            <div style={{position: 'relative'}}>
+                <img src="./images/LogoGeneral.webp" alt="LogoGeneral" className={styles.logoGeneral}/>
+            </div>
             <ul>
                 <li>SearchBar: un input de búsqueda para encontrar videojuegos por nombre.</li>
                 <li>Sector en el que se vea un listado de cards con los videojuegos. Al iniciar deberá cargar los primeros resultados obtenidos desde la ruta GET /videogames y deberá mostrar su:</li>

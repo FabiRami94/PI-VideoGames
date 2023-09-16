@@ -2,6 +2,12 @@ require('dotenv').config();
 const {URL_BASE, API_KEY} = process.env;
 const axios = require('axios');
 
+// 📍 GET | /videogames/name?="..."
+// Esta ruta debe obtener los primeros 15 videojuegos que se encuentren con la palabra recibida por query.
+// Debe poder buscarlo independientemente de mayúsculas o minúsculas.
+// Si no existe el videojuego, debe mostrar un mensaje adecuado.
+// Debe buscar tanto los de la API como los de la base de datos.
+
 const getVideoGamesByName = (req, res) => {
     const {name} = req.query;
     console.log(name)

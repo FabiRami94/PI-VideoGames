@@ -2,6 +2,9 @@ require('dotenv').config();
 const {URL_BASE, API_KEY} = process.env;
 const axios = require('axios');
 
+// 📍 GET | /videogames
+// Obtiene un arreglo de objetos, donde cada objeto es un videojuego con su información.
+
 const getVideoGames = async (req, res) => {
 
     try {

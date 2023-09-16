@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import styles from "./FormPage.module.css";
 
 export default function FormPage () {
 
@@ -16,10 +17,10 @@ export default function FormPage () {
         console.log(event.target.value)
     }
 
-    const handleChecked = (event) => {
+    // const handleChecked = (event) => {
         
-        console.log('hey') 
-    }
+    //     console.log('hey') 
+    // }
 
     useEffect(()=>{
         axios.get('http://localhost:3001/genres')
@@ -35,6 +36,9 @@ export default function FormPage () {
         <div>
             <h1>FORM PAGE     
                 </h1>
+                <div style={{position: 'relative'}}>
+                <img src="./images/LogoGeneral.webp" alt="LogoGeneral" className={styles.logoGeneral}/>
+                </div>
                 <h3>En esta vista se encontrará el formulario para crear un nuevo videojuego.</h3>
                 <h3>Este formulario debe ser controlado completamente con JavaScritp. No se pueden 
                     utilizar validaciones HTML, ni utilizar librerías especiales para esto. Debe 
@@ -83,6 +87,8 @@ export default function FormPage () {
                             </label>
                         ))}
                         <button>CREATE VIDEO GAME</button>
+                        <h1>Create Video Game Images with clipdrop</h1>
+                        <a href="https://clipdrop.co/" target="_blanck">ClipDrop</a>
                     </form>
                 </div>
         </div>
