@@ -4,8 +4,16 @@ import styles from "./LandingPage.module.css";
 
 
 export default function LandingPage () {
+
+    let controlTypes = [
+        { src: './images/LandingPageStart.webp', style: styles.playControl},
+        { src: './images/LandingPagePC.png', style: styles.pcControl}, 
+        { src: './images/LandingPageNintendo.png', style: styles.nintendoControl}, 
+        { src: './images/LandingPageXbox.png', style: styles.xboxControl},
+    ]
+
     return (
-        <div style={{backgroundImage: 'url(/images/LandingPagePrincipal.jpg)', backgroundSize: 'cover', height: '910px',  backgroundPosition: 'center'}}>
+        <div className={styles.backGroungImageGeneral} style={{backgroundImage: 'url(/images/LandingPagePrincipal.jpg)'}}>
             <div style={{position: 'relative'}}>
                 <img src="./images/LogoGeneral.webp" alt="LogoGeneral" className={styles.logoGeneral}/>
             </div>
@@ -14,9 +22,11 @@ export default function LandingPage () {
                 <h1 className={styles.start}>PRESS START</h1>
             </NavLink>
             <div style={{position: 'relative'}}>
-                <NavLink to={'/home'}>
-                    <img src='./images/LandingPageStart.webp' alt="LandingPageControl" className={styles.control}/>
-                </NavLink>         
+                {controlTypes.map((controlType) => (
+                    <NavLink to={'/home'}>
+                        <img src={controlType.src} alt="LandingPageControls" className={controlType.style}/>
+                    </NavLink>         
+                ))}
             </div>
         </div>
     )

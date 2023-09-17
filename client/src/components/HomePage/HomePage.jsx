@@ -100,31 +100,33 @@ export default function HomePage (props){
                         <option>Descendent</option>
                     </select>
                 </div>
+            </div>
+            <div className={styles.Tarjetas}>
+                {gameByName?.map((gameN) => (    
+                    <Card           
+                    key={gameN.id}
+                    id={gameN.id} 
+                    backgroundImage={gameN.background_image}
+                    name={gameN.name} 
+                    genres={gameN.genres}             
+                    ></Card>
+                    ))}
+                {games.map((game) => (
+                    <Cards 
+                    key={game.id}
+                    id={game.id} 
+                    backgroundImage={game.background_image}
+                    name={game.name} 
+                    genres={game.genres} 
+                    ></Cards>
+                )).slice(firstIndex, lastIndex)}
             </div>       
-            {gameByName?.map((gameN) => (    
-                <Card           
-                   key={gameN.id}
-                   id={gameN.id} 
-                   backgroundImage={gameN.background_image}
-                   name={gameN.name} 
-                   genres={gameN.genres}             
-                ></Card>
-                ))}
-            {games.map((game) => (
-                <Cards 
-                key={game.id}
-                id={game.id} 
-                backgroundImage={game.background_image}
-                name={game.name} 
-                genres={game.genres} 
-                ></Cards>
-            )).slice(firstIndex, lastIndex)}
-            <Pagination 
-                gamesPerPage={gamesPerPage} 
-                currentPage={currentPage} 
-                setCurrentPage={setCurrentPage}
-                totalGames={totalGames}
-                ></Pagination>
+                <Pagination 
+                    gamesPerPage={gamesPerPage} 
+                    currentPage={currentPage} 
+                    setCurrentPage={setCurrentPage}
+                    totalGames={totalGames}
+                    ></Pagination>           
         </div>
     )
 }

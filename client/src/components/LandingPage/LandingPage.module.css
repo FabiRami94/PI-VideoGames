@@ -15,10 +15,34 @@
     margin-top: 100px;
 }
 
-.control{
+.playControl{
     position: absolute;
     left: 50%;
     transform: translate(10%, 10%);                                    
+    z-index: 2;
+    width: 10%; 
+}
+
+.pcControl{
+    position: absolute;
+    left: 50%;
+    transform: translate(50%, 10%);                                    
+    z-index: 2;
+    width: 10%; 
+}
+
+.nintendoControl{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 10%);                                    
+    z-index: 2;
+    width: 10%; 
+}
+
+.xboxControl{
+    position: absolute;
+    left: 50%;
+    transform: translate(-10%, 10%);                                    
     z-index: 2;
     width: 10%; 
 }
@@ -29,4 +53,11 @@
     transform: translate(10%, 10%);                                    
     z-index: 2;
     width: 10%;  
+}
+
+.backGroungImageGeneral{
+    background-size: cover;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 100vh;
 }

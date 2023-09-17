@@ -1,0 +1,51 @@
+
+.backGround2Card{
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    border-radius: 30px;
+    border: 2px solid red;
+    margin: 10px;
+    height: 450px;
+    width: 300px;
+}
+
+.backGround3Card{
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    border-radius: 30px;
+    border: 2px solid red;
+    margin: 10px;
+    height: 480px;
+    width: 300px;
+}
+
+.backGround4Card{
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    border-radius: 30px;
+    border: 2px solid red;
+    margin: 10px;
+    height: 540px;
+    width: 300px;
+}
+
+.backGroundMCard{
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    border-radius: 30px;
+    border: 2px solid red;
+    margin: 10px;
+    height: 620px;
+    width: 300px;
+}
+
+.image{
+    border-bottom: 1px solid red;
+    border-radius: 30px 30px 0px 0px;
+    width: 300px;
+}
+
+.text{
+    color: white;
+    margin: 10px;
+}
