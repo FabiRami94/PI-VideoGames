@@ -1,4 +1,4 @@
-const createVideoGames = require( "../controllers/createVideoGameController");
+const createVideoGame = require( "../controllers/createVideoGame");
 
 // 📍 POST | /videogames
 // Esta ruta recibirá todos los datos necesarios para crear un videojuego y relacionarlo con sus 
@@ -15,7 +15,7 @@ const createVideoGamesHandler = async (req, res) => {
         if(!name || !description || !platforms || !image || !released || !rating || !genre ){
             throw new Error('Data Missing')}
         
-        const newVideoGame = await createVideoGames(
+        const newVideoGame = await createVideoGame(
             name, description, platforms, image, released, rating, genre
         );
         res.status(201).json(newVideoGame);

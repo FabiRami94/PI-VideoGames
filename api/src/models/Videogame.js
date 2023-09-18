@@ -12,7 +12,8 @@ module.exports = (sequelize) => {
     'Xbox Series S/X', 'Nintendo Switch', 'iOS', 'Android'), allowNull: false},
     image: {type: DataTypes.BLOB, allowNull: false},
     released: {type: DataTypes.DATE, allowNull: false , validate: {isDate: true}},
-    rating: {type: DataTypes.DECIMAL, allowNull: false, validate: {isDecimal: true}}
+    rating: {type: DataTypes.DECIMAL, allowNull: false, validate: {isDecimal: true}},
+    created: {type: DataTypes.BOOLEAN, defaultValue: true}
   },{
     timestamps : false
   });

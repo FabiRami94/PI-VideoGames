@@ -1,4 +1,11 @@
 
+.generalBackground{
+    background-size: cover;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
 .logoGeneral{
     position: absolute;
     left: 0%;

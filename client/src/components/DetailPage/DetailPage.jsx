@@ -3,6 +3,7 @@ import { createElement } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import styles from "./DetailPage.module.css";
 
 export default function DetailPage () {
 
@@ -12,7 +13,7 @@ export default function DetailPage () {
     const [videoGame, setVideoGame] = useState([]);
 
     useEffect(()=>{
-        axios.get(`http://localhost:3001/videogames/${id}`)
+        axios.get(`http://localhost:3001/videogame/${id}`)
         .then((response) => {
           const videoGamesData = response.data;
           setVideoGame(videoGamesData);
@@ -20,7 +21,7 @@ export default function DetailPage () {
         .catch((error) => {
           console.error(error);
         });
-    },[]);
+    },[id]);
 
     const back = () => {
         navigate(-1);   
@@ -33,8 +34,10 @@ export default function DetailPage () {
     });
 
     return( 
-        <div>
-            <h1>DETAIL PAGE</h1>
+      <div>
+        <div style={{height: '2px', backgroundColor:'rgb(213, 0, 0)'}}></div>
+        <div style={{backgroundImage: 'url(/images/DetailFondo.jpg)'}} className={styles.generalBackground}>
+          <div className={styles.secondBackground}>
             <button onClick={back}>Back</button>
             <h2>ID: {id}</h2>
             <h2>Name: {videoGame.name}</h2>
@@ -45,7 +48,9 @@ export default function DetailPage () {
             <h2>Released: {videoGame.released}</h2>
             <h2>Rating: {videoGame.rating}</h2>
             <h2>Genres: {videoGame.genres}</h2>
-            <a href={videoGame.website} target="_blank">Link: {videoGame.website}</a>
+            <a href={videoGame.website} target="_blank" rel="noreferrer">Link: {videoGame.website}</a>
+          </div>
         </div>
+      </div>
     )
 }
