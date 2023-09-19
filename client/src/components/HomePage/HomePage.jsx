@@ -3,35 +3,23 @@ import React from "react";
 import Card from "../Card/Card";
 import Cards from "../Cards/Cards";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import Pagination from "../Pagination/Pagination";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./HomePage.module.css";
+import { getVideoGames } from "../../redux/actions/actions";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 
 export default function HomePage (){
-    
-    const [games, setGames] = useState([]);
 
-    const totalGames = games.length;
+    const dispatch = useDispatch();
 
-    const gamesPerPage = 15;
-    const [currentPage, setCurrentPage] = useState(1);
+    useEffect(()=>{
+        dispatch(getVideoGames());
+    },[dispatch]);
 
-    const lastIndex =  currentPage * gamesPerPage;
-    const firstIndex = lastIndex - gamesPerPage;
+////////////////////////////////////////
 
-    useEffect(() => {
-      axios.get('http://localhost:3001/videogames')
-        .then((response) => {
-          const gamesData = response.data;
-          setGames(gamesData);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, []); 
-    
     const [gameByName, setGameByName] = useState([]);
   
     async function onSearch (name){
@@ -132,22 +120,8 @@ export default function HomePage (){
                         genres={gameN.genres}             
                         ></Card>
                         ))}
-                    {games.map((game) => (
-                        <Cards 
-                        key={game.id}
-                        id={game.id} 
-                        backgroundImage={game.background_image}
-                        name={game.name} 
-                        genres={game.genres} 
-                        ></Cards>
-                    )).slice(firstIndex, lastIndex)}
-                </div>       
-                    <Pagination 
-                        gamesPerPage={gamesPerPage} 
-                        currentPage={currentPage} 
-                        setCurrentPage={setCurrentPage}
-                        totalGames={totalGames}
-                        ></Pagination>           
+                    <Cards></Cards>
+                </div>                                  
             </div>
         </div>
     )

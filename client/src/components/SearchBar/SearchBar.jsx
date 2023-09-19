@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar({onSearch, setGameByName}){
 
@@ -19,10 +20,12 @@ export default function SearchBar({onSearch, setGameByName}){
    
     return(
         <div>
-            <label>Search by name:</label>
-            <input type='search' placeholder="Write a name..." onChange={handleChange}></input>
-            <button onClick={search}>Send</button>
-            <button onClick={resetSearch}>Reset Search</button>
+            <div className={styles.divGeneral}>
+                <label className={styles.letter}>Search by name:</label>
+                <input className={styles.generalInput} type='search' placeholder="Write a name..." onChange={handleChange}></input>
+                <button className={styles.generalButton} onClick={search}>Send</button>
+                <button className={styles.generalButton} onClick={resetSearch}>Reset Search</button>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,10 @@
+
+.Tarjetas{
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: Row;
+    flex-wrap: wrap; /* Añade esta línea para permitir el ajuste a nuevas líneas */
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start; /* Alinea las líneas al principio verticalmente */
+}

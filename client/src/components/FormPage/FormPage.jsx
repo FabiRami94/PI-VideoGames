@@ -64,16 +64,28 @@ export default function FormPage () {
                         <label>Platforms:</label>
                         {/* mejorar despues con Map */}
                             <label> 
-                                <input type="checkbox" name="opcion1" value="Opción 1" /> Play 5
+                                <input type="checkbox" name="opcion1" value="Opción 1" /> PlayStation 5
                             </label>
                             <label>
-                                <input  type="checkbox" name="opcion2" value="Opción 2" /> Play 4
+                                <input  type="checkbox" name="opcion2" value="Opción 2" /> PlayStation 4
                             </label>
                             <label>
-                                <input type="checkbox" name="opcion3" value="Opción 3" /> Xbox
+                                <input type="checkbox" name="opcion3" value="Opción 3" /> Xbox One
                             </label>
                             <label>
                                 <input type="checkbox" name="opcion4" value="Opción 4" /> Pc
+                            </label>
+                            <label> 
+                                <input type="checkbox" name="opcion1" value="Opción 1" /> Xbox Series S/X
+                            </label>
+                            <label>
+                                <input  type="checkbox" name="opcion2" value="Opción 2" /> Nintendo Switch
+                            </label>
+                            <label>
+                                <input type="checkbox" name="opcion3" value="Opción 3" /> iOS
+                            </label>
+                            <label>
+                                <input type="checkbox" name="opcion4" value="Opción 4" /> Android
                             </label>
                         <label>released:</label>
                         <input type="date" ></input>

@@ -1,0 +1,37 @@
+
+.divGeneral{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.generalInput{ 
+    border: 1.5px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.generalButton{
+    background-color: rgb(0, 0, 0, 0.5);
+    border: 1.5px solid black;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.generalButton:hover {
+    background-color: rgb(0, 0, 0, 0.8);
+}
+
+.generalButton:active {
+    background-color: rgb(213, 0, 0);
+}
+
+.letter{    
+    font-size: 18px;
+    font-weight: 600;
+}

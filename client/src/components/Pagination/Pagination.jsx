@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Pagination.module.css";
 
 export default function Pagination ({gamesPerPage, currentPage, setCurrentPage, totalGames}) {
 
@@ -21,12 +22,24 @@ export default function Pagination ({gamesPerPage, currentPage, setCurrentPage, 
     }
 
     return (
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-            <button onClick={onPreviusPage} disabled={currentPage === 1}>Previus</button>
-            {pageNumbers.map(noPage => (           
-                <button key={noPage} onClick={() => onSpecificPage(noPage)}>{noPage}</button>
-            ))}
-            <button onClick={onNextPage} disabled={currentPage === pageNumbers.length}>Next Button</button>
+        <div>
+            <div className={styles.divGeneral}>
+                <button            
+                    className={styles.letters} 
+                    onClick={onPreviusPage} 
+                    disabled={currentPage === 1}>Previus</button>
+                {pageNumbers.map(noPage => (           
+                    <button 
+                        className={styles.numbers}
+                        key={noPage} 
+                        onClick={() => onSpecificPage(noPage)}
+                        style={noPage === currentPage ? {backgroundColor: 'rgb(213, 0, 0, 0.9)'} : null}>{noPage}</button>
+                ))}
+                <button 
+                    className={styles.letters}
+                    onClick={onNextPage} 
+                    disabled={currentPage === pageNumbers.length}>Next Button</button>
+            </div>
         </div>
     )
 }
