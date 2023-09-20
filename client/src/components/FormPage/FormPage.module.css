@@ -2,7 +2,31 @@
 .logoGeneral{
     position: absolute;
     left: 0%;
-    transform: translate(10%, -62%);                                    
+    transform: translate(10%, 10%);                                    
     z-index: 2;
     width: 10%;  
+}
+
+.generalBackground{
+
+}
+
+.backgroundForm{
+    border-radius: 30px;
+    margin: 50px;
+    background-color: rgb(0, 0, 0, 0.5);
+    color: white;
+}
+
+.generalInput{ 
+    border: 1.5px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 5px;
+    width: 400px;
+}
+
+.letters{    
+    font-size: 18px;
+    font-weight: 600;
 }

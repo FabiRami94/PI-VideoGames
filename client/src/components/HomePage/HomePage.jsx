@@ -2,12 +2,12 @@
 import React from "react";
 import Card from "../Card/Card";
 import Cards from "../Cards/Cards";
-import axios from "axios";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./HomePage.module.css";
 import { getVideoGames } from "../../redux/actions/actions";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {getVideoGamesByName} from "../../redux/actions/actions";
 
 
 export default function HomePage (){
@@ -18,50 +18,28 @@ export default function HomePage (){
         dispatch(getVideoGames());
     },[dispatch]);
 
-////////////////////////////////////////
-
-    const [gameByName, setGameByName] = useState([]);
+    const videoGamesByName = useSelector(state => state.videoGamesByName);
   
     async function onSearch (name){
   
         if(!name){return window.alert('¡You must enter a name!')};
         if(!isNaN(name)){return window.alert('¡You must enter a name, not a number!')}
-
-        let nameTransformed = name.toLowerCase();
    
         try {
-            const response = (await axios.get(
-              `http://localhost:3001/videogames/?name=${nameTransformed}`)).data;  
-
-              setGameByName(oldGames => [response, ...oldGames]);
-
+           dispatch(getVideoGamesByName(name))
         } catch (error) {
-            console.error(error);
+            window.alert({error: error.message});
         }
-  }
+    };
 
     return(
         <div> 
             <div style={{height: '2px', backgroundColor:'rgb(213, 0, 0)'}}></div>
             <div >
-                <SearchBar onSearch={onSearch} setGameByName={setGameByName}></SearchBar>
-                <h1>SOY EL HOME</h1>
+                <SearchBar onSearch={onSearch}></SearchBar>
                 <div style={{position: 'relative'}}>
                     <img src="./images/LogoGeneral.webp" alt="LogoGeneral" className={styles.logoGeneral}/>
                 </div>
-                <ul>
-                    <li>SearchBar: un input de búsqueda para encontrar videojuegos por nombre.</li>
-                    <li>Sector en el que se vea un listado de cards con los videojuegos. Al iniciar deberá cargar los primeros resultados obtenidos desde la ruta GET /videogames y deberá mostrar su:</li>
-                    <ul>
-                        <li>Imagen.</li>
-                        <li>Nombre.</li>
-                        <li>Géneros.</li>
-                    </ul>
-                    <li>Cuando se le hace click a una Card deberá redirigir al detalle de ese videojuego específico.</li>
-                    <li>Botones/Opciones para filtrar por género, y por si su origen es de la API o de la base de datos (creados por nosotros desde el formulario).</li>
-                    <li>Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating.</li>
-                    <li>Paginado: el listado de videojuegos se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 15 videojuegos por página.</li>
-                </ul>
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <div>
                         <h3>Genre</h3>
@@ -111,7 +89,7 @@ export default function HomePage (){
                     </div>
                 </div>
                 <div className={styles.Tarjetas}>
-                    {gameByName.flat().map((gameN) => (    
+                    {videoGamesByName.flat().map((gameN) => (    
                         <Card           
                         key={gameN.id}
                         id={gameN.id} 
@@ -126,3 +104,19 @@ export default function HomePage (){
         </div>
     )
 }
+
+// SearchBar: un input de búsqueda para encontrar videojuegos por nombre.
+// Sector en el que se vea un listado de cards con los videojuegos. Al iniciar deberá cargar los 
+// primeros resultados obtenidos desde la ruta GET /videogames y deberá mostrar su:
+
+//     Imagen.
+//     Nombre.
+//     Géneros.
+
+// Cuando se le hace click a una Card deberá redirigir al detalle de ese videojuego específico.
+// Botones/Opciones para filtrar por género, y por si su origen es de la API o de la base de datos 
+// (creados por nosotros desde el formulario).
+// Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por
+// orden alfabético y por rating.
+// Paginado: el listado de videojuegos se hará por partes. Tu SPA debe contar con un paginado que 
+// muestre un total de 15 videojuegos por página

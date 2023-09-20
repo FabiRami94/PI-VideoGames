@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css";
+import { useDispatch } from "react-redux";
+import {resetGamesByName} from "../../redux/actions/actions";
 
-export default function SearchBar({onSearch, setGameByName}){
+export default function SearchBar({onSearch}){
 
+    const dispatch = useDispatch();
     const [name, setName] = useState('');
 
     function handleChange (event) {
@@ -15,7 +18,7 @@ export default function SearchBar({onSearch, setGameByName}){
     }
 
     const resetSearch = () => {
-        setGameByName([])
+        dispatch(resetGamesByName());
     }
    
     return(

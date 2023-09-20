@@ -1,4 +1,4 @@
-import { GET_GAMES, GET_GAMES_BY_NAME } from "./actionsTypes";
+import { GET_GAMES, GET_GAMES_BY_NAME, RESET_GAMES_BY_NAME } from "./actionsTypes";
 import axios from 'axios';
 
 export const getVideoGames = () => {
@@ -8,12 +8,24 @@ export const getVideoGames = () => {
 
         dispatch({type: GET_GAMES, payload: videoGames});
     }
-
 };
 
-export const getVideoGamesByName = () => {
+export const getVideoGamesByName = (name) => {
     return async function (dispatch){
 
-        dispatch({type: GET_GAMES_BY_NAME, })
+        let nameTransformed = name.toLowerCase();
+   
+            const videoGamesByName = (await axios.get(
+              `http://localhost:3001/videogames/?name=${nameTransformed}`)).data;  
+
+        dispatch({type: GET_GAMES_BY_NAME, payload: videoGamesByName});
+    }
+}
+
+export const resetGamesByName = () => {
+    return async function (dispatch){
+        dispatch({
+            type: RESET_GAMES_BY_NAME, payload: []
+        });
     }
 }
