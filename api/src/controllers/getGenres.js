@@ -12,23 +12,27 @@ const {Genre} = require('../db')
 
 const getGenres = async () => {
 
-    const genreInfo = []
-  
-    const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
-    const {results} = response.data;
-    
-    if(results){ 
+    const genresDB = await Genre.findAll();
+
+    if(!genresDB.length){
+        const response = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+        const {results} = response.data;
+        
+        let genres = [];
+
+        if(results){
         results.forEach((genre) => {
-            genreInfo.push({
-                name: genre.name, 
+            genres.push({
+                genres: genre.name, 
             });
-        });
+        })};
+       
+        await Genre.bulkCreate(genres);      
+        return genres;
     }
-
-    await Genre.bulkCreate(genreInfo);
-
-    return genreInfo;
+    return genresDB;
 };
 
 module.exports = getGenres;
+
 

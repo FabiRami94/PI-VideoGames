@@ -65,7 +65,7 @@ export default function FormPage () {
     }
 
     return(
-        <div style={{backgroundImage: 'url(/images/FormFondo.jpg)'}} className={styles.generalBackground}>
+        <div style={{backgroundImage: 'url(/images/FormFondo.jpg)'}} className={styles.backGroungImageGeneral}>
             <div style={{height: '2px', backgroundColor:'rgb(213, 0, 0)'}}></div>
             <div style={{position: 'relative'}}>
                 <img src="./images/LogoGeneral.webp" alt="LogoGeneral" className={styles.logoGeneral}/>
@@ -150,12 +150,33 @@ export default function FormPage () {
                                     />{genre}</label>
                             ))}
                         </div>
-                        <button>CREATE VIDEO GAME</button>
+                        <div>
+                            <button className={styles.generalButton}>CREATE VIDEO GAME</button>
+                        </div>
                     </form>
             </div>
             <div className={styles.backgroundForm}>
-                <h1>Create Video Game Images with clipdrop</h1>
-                <a href="https://clipdrop.co/" target="_blanck">ClipDrop</a>
+                <h1 style={{paddingTop: '10px'}}>Create AI video game images with clipdrop</h1>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <img src="./images/ClipDrop1.png" alt="Step 1" className={styles.stepImages}/>
+                        <h3 className={styles.stepText}>Step 1: Scroll down to all tools, then click 
+                        on stable diffusion XL to generate high-resolution realistic images with AI.</h3>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <img src="./images/ClipDrop2.png" alt="Step 2" className={styles.stepImages}/>
+                        <h3 className={styles.stepText}>Step 2: Write a description of the image you 
+                        want to generate, choose a style and click generate</h3>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <img src="./images/ClipDrop3.png" alt="Step 2" className={styles.stepImages}/>
+                        <h3 className={styles.stepText}>Step 3: Select your favorite image and 
+                        download, you can now mount the image above!</h3>
+                    </div>
+                </div>
+                <a style={{textDecoration: 'none', color: 'white', fontSize: '20px'}} 
+                    href="https://clipdrop.co/" target="_blanck">GO TO: Clipdrop.co</a>
+                <div style={{height: '20px'}}></div>
             </div>
         </div>
     )

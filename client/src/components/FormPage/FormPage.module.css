@@ -7,8 +7,10 @@
     width: 10%;  
 }
 
-.generalBackground{
-
+.backGroungImageGeneral{
+    background-size: cover;
+    background-position: center;
+    height: 1200px;
 }
 
 .backgroundForm{
@@ -29,4 +31,30 @@
 .letters{    
     font-size: 18px;
     font-weight: 600;
+}
+
+.generalButton{
+    background-color: rgba(100, 30, 212, 0.5);
+    border: 1.5px solid black;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px;
+    margin: 10px;
+    width: 200px;
+    align-items: center;
+    align-content: center;
+    font-weight: 600;  
+}
+
+.generalButton:hover {
+    background-color: rgba(100, 30, 212);
+}
+
+.stepImages {
+    width: 320px;
+}
+
+.stepText {
+    width: 320px;
 }

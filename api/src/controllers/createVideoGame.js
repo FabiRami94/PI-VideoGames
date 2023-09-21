@@ -15,9 +15,10 @@ const createVideoGame = async (name, description, platforms, image, released, ra
 
     genres.forEach(async(g) =>{
         let genresDB = await Genre.findAll({
-            where: {name: g},
-        });    
-            await newVideoGame.addGenre(genresDB);
+            where: {genres: g},
+        }); 
+           
+        await newVideoGame.addGenre(genresDB);
     })
 
     return newVideoGame;
