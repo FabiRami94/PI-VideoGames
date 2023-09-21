@@ -22,7 +22,15 @@ export default function Cards () {
     },[videoGames]);
 
     return(
-        <div>   
+        <div>
+            <div>
+                <Pagination 
+                    gamesPerPage={gamesPerPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    totalGames={totalGames}>
+                </Pagination>       
+            </div>  
             <div className={styles.Tarjetas}>
                 {videoGames.map((game)=> (
                     <Card

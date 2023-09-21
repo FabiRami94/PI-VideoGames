@@ -29,7 +29,7 @@ export default function Card ({id, name, backgroundImage, genres}) {
                 <img className={styles.image} src={backgroundImage} alt="VideoGames"/>
                 <h1 className={styles.text}>{name}</h1>
                 { genres.map((genre) => 
-                (<div className={styles.text} style={{display: 'flex', flexDirection: 'row'}}>
+                (<div key={genre} className={styles.text} style={{display: 'flex', flexDirection: 'row'}}>
                     <GiAncientSword size={'30px'} 
                         style={{
                             margin: '10px', 

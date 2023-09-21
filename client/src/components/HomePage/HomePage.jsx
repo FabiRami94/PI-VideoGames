@@ -4,10 +4,16 @@ import Card from "../Card/Card";
 import Cards from "../Cards/Cards";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./HomePage.module.css";
-import { getVideoGames } from "../../redux/actions/actions";
+import { genresArray } from "../../utils/genrPlatfArrays";
+import {    getVideoGames, 
+            getVideoGamesByName, 
+            filterGamesByGenre, 
+            filterGamesByCreator, 
+            filterGamesByRating, 
+            filterGamesByAlphabet } from "../../redux/actions/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getVideoGamesByName} from "../../redux/actions/actions";
+
 
 
 export default function HomePage (){
@@ -32,59 +38,63 @@ export default function HomePage (){
         }
     };
 
+    const handleFilterByGenre = (event) => {
+        dispatch(filterGamesByGenre(event.target.value));
+        console.log(event.target.value)
+    };
+
+    const handleFilterByCreator = () => {
+        dispatch(filterGamesByCreator());
+    };
+
+    const handleFilterByRating = (event) => {
+        dispatch(filterGamesByRating(event.target.value));
+    };
+
+    const handleFilterByAlphabet = (event) => {
+        dispatch(filterGamesByAlphabet(event.target.value));
+    };
+
     return(
-        <div> 
+        <div style={{backgroundImage: 'url(/images/HomeFondo.jpg)'}} className={styles.generalBackground}> 
             <div style={{height: '2px', backgroundColor:'rgb(213, 0, 0)'}}></div>
-            <div >
+            <div>
                 <SearchBar onSearch={onSearch}></SearchBar>
                 <div style={{position: 'relative'}}>
                     <img src="./images/LogoGeneral.webp" alt="LogoGeneral" className={styles.logoGeneral}/>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                     <div>
-                        <h3>Genre</h3>
-                        <select>
-                            {/* mejorar con map */}
-                            <option>Action</option>
-                            <option>Indie</option>
-                            <option>Adventure</option>
-                            <option>RPG</option>
-                            <option>Strategy</option>
-                            <option>Shooter</option>
-                            <option>Casual</option>
-                            <option>Simulation</option>
-                            <option>Puzzle</option>
-                            <option>Arcade</option>
-                            <option>Platformer</option>
-                            <option>Massively Multiplayer</option>
-                            <option>Racing</option>
-                            <option>Sports</option>
-                            <option>Fighting</option>
-                            <option>Family</option>
-                            <option>Board Games</option>
-                            <option>Educational</option>
-                            <option>Card</option>
+                        <h3 className={styles.letters}>Genre</h3>
+                        <select className={styles.generalButton} onChange={handleFilterByGenre}>
+                            <option>Select</option>
+                            {genresArray.map((genre) => (                                                      
+                                <option key={genre} value={genre}>{genre}</option>                            
+                            ))}
                         </select>
                     </div>
                     <div>
-                        <h3>Creator</h3>
-                        <select>
+                        <h3 className={styles.letters}>Creator</h3>
+                        <select className={styles.generalButton} onChange={handleFilterByCreator}>
+                            <option>Select</option>
                             <option>Owm</option>
                             <option>Other</option>
                         </select>
                     </div>
                     <div>
-                        <h3>Popularity</h3>
-                        <select>
-                            <option>Most</option>
-                            <option>Less</option>
+                        <h3 className={styles.letters}>Rating</h3>
+                        <select className={styles.generalButton} onChange={handleFilterByRating}>
+                            <option value={'S'}>Select</option>
+                            <option value={'M'}>Most Popular</option>
+                            <option value={'L'}>Less Popular</option>
                         </select>
                     </div>
                     <div>
-                        <h3>Alphabety</h3>
-                        <select>
-                            <option>Ascendent</option>
-                            <option>Descendent</option>
+                        <h3 className={styles.letters}>Alphabet</h3>
+                        <select className={styles.generalButton} onChange={handleFilterByAlphabet}>
+                            <option value={'S'}>Select</option>
+                            <option value={'A'}>Ascendent</option>
+                            <option value={'D'}>Descendent</option>
                         </select>
                     </div>
                 </div>
@@ -95,7 +105,8 @@ export default function HomePage (){
                         id={gameN.id} 
                         backgroundImage={gameN.background_image}
                         name={gameN.name} 
-                        genres={gameN.genres}             
+                        genres={gameN.genres}
+                        created={false}             
                         ></Card>
                         ))}
                     <Cards></Cards>

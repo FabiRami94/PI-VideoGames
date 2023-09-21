@@ -26,14 +26,6 @@ export default function FormPage () {
         genres: [],   
     });
 
-    // const handleChange = (event) => {
-
-    //     setNewGameData({...newGameData, [event.target.name] : event.target.value});
-    //     setErrors(
-    //         validations({...newGameData, [event.target.name] : event.target.value}));
-    //     console.log(event.target.value)     
-    // }
-
     const handleChange = (event) => {
 
         const { name, value } = event.target;
@@ -65,7 +57,11 @@ export default function FormPage () {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3001/createvideogame', newGameData).then(res => alert(res));
+        try {    
+            axios.post('http://localhost:3001/createvideogame', newGameData).then(res => alert(res));
+        } catch (error) {
+            window.alert(error)
+        }
     }
 
     return(

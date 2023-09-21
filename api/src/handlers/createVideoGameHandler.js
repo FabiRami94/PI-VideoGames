@@ -8,15 +8,15 @@ const createVideoGame = require( "../controllers/createVideoGame");
 // indicados (al menos uno).
 
 const createVideoGamesHandler = async (req, res) => {
-
-    try {
-        const {name, description, platforms, image, released, rating, genre} = req.body;
     
-        if(!name || !description || !platforms || !image || !released || !rating || !genre ){
+    try {
+        const {name, description, platforms, image, released, rating} = req.body;
+        
+        if(!name || !description || !platforms || !image  || !released  || !rating){
             throw new Error('Data Missing')}
         
         const newVideoGame = await createVideoGame(
-            name, description, platforms, image, released, rating, genre
+            name, description, platforms, image, released, rating
         );
         res.status(201).json(newVideoGame);
     } catch (error) {
@@ -25,15 +25,3 @@ const createVideoGamesHandler = async (req, res) => {
 };
 
 module.exports = createVideoGamesHandler;
-
-
-// try {
-//     const {name, description, platforms, image, released, rating} = req.body;
-
-//     const newVideoGame = await Videogame.create({
-//         name, description, platforms, image, released, rating});
-
-//     res.status(200).json(newVideoGame);
-// } catch (error) {
-//     res.status(404).json({message: error.message})
-// }

@@ -1,9 +1,9 @@
 
 .generalBackground{
-    background-size: cover;
+    
     background-position: center;
-    min-width: 100vw;
-    min-height: 100vh;
+    
+    
 }
 
 .logoGeneral{
@@ -22,4 +22,26 @@
     justify-content: space-evenly;
     align-items: center;
     align-content: flex-start; /* Alinea las líneas al principio verticalmente */
+}
+
+.generalButton{
+    background-color: rgb(0, 0, 0, 0.5);
+    border: 1.5px solid black;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 2px;
+    margin-bottom: 10px;
+}
+
+.generalButton:hover {
+    background-color: rgb(0, 0, 0, 0.8);
+}
+
+.letters{    
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    color: white;
 }

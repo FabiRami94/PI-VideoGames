@@ -1,4 +1,12 @@
-import { GET_GAMES, GET_GAMES_BY_NAME, RESET_GAMES_BY_NAME } from "./actionsTypes";
+import { 
+    GET_GAMES,
+    GET_GAMES_BY_NAME, 
+    RESET_GAMES_BY_NAME, 
+    FILTER_GAMES_BY_GENRE,
+    FILTER_GAMES_BY_CREATOR,
+    FILTER_GAMES_BY_RATING,
+    FILTER_GAMES_BY_ALPHABET,
+} from "./actionsTypes";
 import axios from 'axios';
 
 export const getVideoGames = () => {
@@ -23,9 +31,32 @@ export const getVideoGamesByName = (name) => {
 }
 
 export const resetGamesByName = () => {
-    return async function (dispatch){
-        dispatch({
+    return {
             type: RESET_GAMES_BY_NAME, payload: []
-        });
-    }
+    };
+}
+
+
+export const filterGamesByGenre = (genre) => {
+    return {
+        type: FILTER_GAMES_BY_GENRE, payload: genre
+    };
+}
+
+export const filterGamesByCreator = (created) => {
+    return {
+        type: FILTER_GAMES_BY_CREATOR, payload: created
+    };
+}
+
+export const filterGamesByRating = (rating) => {
+    return {
+        type: FILTER_GAMES_BY_RATING, payload: rating
+    };
+}
+
+export const filterGamesByAlphabet = (name) => {
+    return {
+        type: FILTER_GAMES_BY_ALPHABET, payload: name
+    };
 }

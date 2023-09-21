@@ -23,20 +23,20 @@ export default function Pagination ({gamesPerPage, currentPage, setCurrentPage, 
 
     return (
         <div>
-            <div className={styles.divGeneral}>
+            <div>
                 <button            
-                    className={styles.letters} 
+                    className={styles.generalButton} 
                     onClick={onPreviusPage} 
                     disabled={currentPage === 1}>Previus</button>
                 {pageNumbers.map(noPage => (           
                     <button 
-                        className={styles.numbers}
+                        className={styles.generalButton}
                         key={noPage} 
                         onClick={() => onSpecificPage(noPage)}
                         style={noPage === currentPage ? {backgroundColor: 'rgb(213, 0, 0, 0.9)'} : null}>{noPage}</button>
                 ))}
                 <button 
-                    className={styles.letters}
+                    className={styles.generalButton}
                     onClick={onNextPage} 
                     disabled={currentPage === pageNumbers.length}>Next Button</button>
             </div>
