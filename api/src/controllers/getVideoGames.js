@@ -27,10 +27,10 @@ const getVideoGames = async () => {
       description: game.description,
       platforms: game.platforms,
       background_image: game.background_image,
+      genres: game.Genres.map((genre) => genre.genres),
       released: game.released,
       rating: game.rating,
       created: game.created,
-      genres: game.Genres.map((genre) => genre.genres),
     }));
 
     gamesInfo.push(...genresVideoGames);

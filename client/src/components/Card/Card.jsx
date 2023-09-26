@@ -7,7 +7,7 @@ import { useMemo } from "react";
 export default function Card ({id, name, backgroundImage, genres, rating}) {
 
     const valueGen = useMemo(() => {
-    console.log(genres)
+        
         switch (genres.length) {
             case 1:
                 return styles.backGround2Card

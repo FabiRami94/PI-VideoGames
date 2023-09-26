@@ -40,11 +40,10 @@ export default function HomePage (){
 
     const handleFilterByGenre = (event) => {
         dispatch(filterGamesByGenre(event.target.value));
-        console.log(event.target.value)
     };
 
-    const handleFilterByCreator = () => {
-        dispatch(filterGamesByCreator());
+    const handleFilterByCreator = (event) => {
+        dispatch(filterGamesByCreator(event.target.value));
     };
 
     const handleFilterByRating = (event) => {
@@ -77,8 +76,8 @@ export default function HomePage (){
                         <h3 className={styles.letters}>Creator</h3>
                         <select className={styles.generalButton} onChange={handleFilterByCreator}>
                             <option>Select</option>
-                            <option>Owm</option>
-                            <option>Other</option>
+                            <option value={'true'}>Owm</option>
+                            <option value={'false'}>Other</option>
                         </select>
                     </div>
                     <div>

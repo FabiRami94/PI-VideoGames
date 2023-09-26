@@ -11,7 +11,7 @@
     background-size: cover;
     background-position: center;
     background-attachment: 'fixed';
-    height: 1660px;
+    height: 1680px;
 }
 
 .backgroundForm{
@@ -42,7 +42,7 @@
     border-radius: 5px;
     font-size: 16px;
     padding: 5px;
-    margin: 10px;
+    margin: 30px 10px 10px 10px;
     width: 200px;
     align-items: center;
     align-content: center;
