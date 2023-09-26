@@ -11,27 +11,57 @@ const {Videogame , Genre} = require('../db');
 
 
 const getVideoGamesById = async (id, source) => {
-    // FALTA GÉNERO DE BASE DE DATOS!!
+    
     const response = (source === 'api') ?
         (await axios.get(`${URL_BASE}/${id}?key=${API_KEY}`)).data :
-        await Videogame.findByPk(id);
+        (await Videogame.findByPk(id, {
+            include: [
+                {
+                    model: Genre,
+                    attributes: ["genres"],
+                    through: { attributes: [] },
+                },
+            ],
+        })).dataValues;
 
-        if(response.name){ 
-            VideoG = {
+        
+        if(source === 'api' && response.name){ 
+            console.log(response.name);
+            let VideoGApi = {
                 id: response.id,
                 name: response.name,
-                background_image: response.background_image,
-                background_image_additional: response.background_image_additional,
+                // background_image_additional: response.background_image_additional,
                 platforms: response.platforms.map((platform) => platform.platform.name),
                 description: response.description,
+                background_image: response.background_image,
                 released: response.released,
                 rating: response.rating,
+                genres: response.genres,
                 genres: response.genres.map((genre) => genre.name),
                 website: response.website,
             };
+            return VideoGApi;
         }
+        
+        let generalGenre = response.Genres.map((genre) => genre.dataValues);
 
-        return VideoG;
+        if(source === 'bdd' && response.name){ 
+            console.log(response.name);
+            let VideoGBdd = {
+                id: response.id,
+                name: response.name,
+                // background_image_additional: response.background_image_additional,
+                platforms: response.platforms.map((platform) => platform),
+                description: response.description,
+                background_image: response.background_image,
+                released: response.released,
+                rating: response.rating,
+                genres: generalGenre.map((genre) => genre.genres),
+                website: response.website,
+            };
+            return VideoGBdd;
+        }
+        
 };
 
 module.exports = getVideoGamesById;

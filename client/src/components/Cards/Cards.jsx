@@ -38,6 +38,7 @@ export default function Cards () {
                         id={game.id}
                         name={game.name} 
                         backgroundImage={game.background_image} 
+                        rating={game.rating}
                         genres={game.genres}
                     ></Card>
                 )).slice(firstIndex, lastIndex)

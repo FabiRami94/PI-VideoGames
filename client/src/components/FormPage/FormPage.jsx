@@ -10,7 +10,7 @@ export default function FormPage () {
         name: '',
         description: '',
         platforms: [],
-        image: '',
+        background_image: '',
         released: '',
         rating: '',
         genres: [],   
@@ -20,7 +20,7 @@ export default function FormPage () {
         name: '',
         description: '',
         platforms: [],
-        image: '',
+        background_image: '',
         released: '',
         rating: '',
         genres: [],   
@@ -110,10 +110,11 @@ export default function FormPage () {
                         <div style={{marginTop: '20px'}}>
                             <label className={styles.letters}>Image:</label>
                             <input 
-                                type="file" 
-                                name="image" 
+                                type="text" 
+                                name="background_image" 
                                 onChange={handleChange}       
-                                value={newGameData.image}></input>
+                                value={newGameData.background_image}
+                                style={{width: '250px'}}></input>
                         </div>
                         <div style={{marginTop: '20px'}}>
                             <label className={styles.letters}>Released:</label>
@@ -156,7 +157,7 @@ export default function FormPage () {
                     </form>
             </div>
             <div className={styles.backgroundForm}>
-                <h1 style={{paddingTop: '10px'}}>Create AI video game images with clipdrop</h1>
+                <h1>Create AI video game images with clipdrop</h1>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <img src="./images/ClipDrop1.png" alt="Step 1" className={styles.stepImages}/>
@@ -174,9 +175,31 @@ export default function FormPage () {
                         download, you can now mount the image above!</h3>
                     </div>
                 </div>
-                <a style={{textDecoration: 'none', color: 'white', fontSize: '20px'}} 
-                    href="https://clipdrop.co/" target="_blanck">GO TO: Clipdrop.co</a>
-                <div style={{height: '20px'}}></div>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <img src="./images/Imgbb1.png" alt="Step 1" className={styles.stepImages}/>
+                        <h3 className={styles.stepText}>Step 4: Go to the link imgbb.com and click 
+                        "COMENZAR A SUBIR".</h3>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <img src="./images/Imgbb2.png" alt="Step 2" className={styles.stepImages}/>
+                        <h3 className={styles.stepText}>Step 5: The directory will open, you will 
+                        search for the image and click "SUBIR", do not set an expiration time</h3>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <img src="./images/Imgbb3.png" alt="Step 2" className={styles.stepImages}/>
+                        <h3 className={styles.stepText}>Step 6: copy the indicated link of the 
+                        "BBCode completa enlazada" option and mount it in the form, That's all!</h3>
+                    </div>
+                </div>        
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+                    <a style={{textDecoration: 'none', color: 'purple', fontSize: '25px', paddingLeft: '70px'}} 
+                        href="https://clipdrop.co/" target="_blanck">GO TO: Clipdrop.co</a>
+                    <div style={{height: '20px'}}></div>
+                    <a style={{textDecoration: 'none', color: 'purple', fontSize: '25px'}} 
+                        href="https://es.imgbb.com/" target="_blanck">GO TO: Imgbb.com</a>
+                    <div style={{height: '20px'}}></div>
+                </div>
             </div>
         </div>
     )

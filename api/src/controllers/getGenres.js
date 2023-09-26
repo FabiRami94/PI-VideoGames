@@ -30,7 +30,7 @@ const getGenres = async () => {
         await Genre.bulkCreate(genres);      
         return genres;
     }
-    return genresDB;
+    return genresDB.map((gen) => gen.genres);
 };
 
 module.exports = getGenres;

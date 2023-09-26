@@ -11,25 +11,30 @@ import {
 const initialState = {
     videoGames: [],
     videoGamesByName: [],
+    videoGamesGenres: [],
 }
 
 function rootReducer (state = initialState, action) {
     switch(action.type){
+
         case GET_GAMES:
-            return {...state, videoGames: action.payload};
+            return {...state, videoGames: action.payload, videoGamesGenres: action.payload};
+
         case GET_GAMES_BY_NAME:
             return {...state, videoGamesByName: [action.payload, ...state.videoGamesByName]};
+            
         case RESET_GAMES_BY_NAME:
             return {...state, videoGamesByName: action.payload};
-        case FILTER_GAMES_BY_GENRE:        
-            let allGenres = [...state.videoGames, ...state.videoGamesByName].flat();
-            let genres = allGenres.map((gen) => gen.genres);
 
-            // allGenres.filter((game) => game.genres.some(() =>  action.payload));
-           
-            return {...state, videoGames: allGenres};
+        case FILTER_GAMES_BY_GENRE:             
+            const filteredGenres = state.videoGamesGenres.filter((
+                game) => game.genres.includes(action.payload)
+            );
+            return {...state, videoGames: filteredGenres};
+
         case FILTER_GAMES_BY_CREATOR:
             return {...state};
+
         case FILTER_GAMES_BY_RATING:
 
             let gamesRating = [...state.videoGames, ...state.videoGamesByName].flat();
@@ -57,7 +62,5 @@ function rootReducer (state = initialState, action) {
             return {...state}
     }
 }
-
-
 
 export default rootReducer;

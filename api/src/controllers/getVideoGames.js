@@ -12,7 +12,28 @@ const getVideoGames = async () => {
     let pageNumber = 1;
     const gamesInfo = [];
 
-    const databaseVideoGames = await Videogame.findAll();
+    const databaseVideoGames = await Videogame.findAll({
+      include: [
+        {
+          model: Genre,
+          attributes: ["genres"],
+          through: { attributes: [] },
+        },
+    ],});
+    
+    const genresVideoGames = databaseVideoGames.map((game) => ({
+      id: game.id,
+      name: game.name,
+      description: game.description,
+      platforms: game.platforms,
+      background_image: game.background_image,
+      released: game.released,
+      rating: game.rating,
+      created: game.created,
+      genres: game.Genres.map((genre) => genre.genres),
+    }));
+
+    gamesInfo.push(...genresVideoGames);
     
     while(pageNumber <= 5){
     const apiVideoGames = (
@@ -34,8 +55,8 @@ const getVideoGames = async () => {
       break;
     }
     };
-
-    return [...databaseVideoGames, ...gamesInfo];
+    
+    return [ ...gamesInfo];
 };
 
 module.exports = getVideoGames;

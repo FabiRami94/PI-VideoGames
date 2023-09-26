@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     name: {type: DataTypes.STRING, allowNull: false, unique: true, validate: {min: 2, max: 30}},
     description: {type: DataTypes.TEXT, allowNull: false, validate: {min: 20, max: 200}},
     platforms: {type: DataTypes.ARRAY(DataTypes.STRING), allowNull: false},
-    image: {type: DataTypes.BLOB, allowNull: false},
+    background_image: {type: DataTypes.STRING, allowNull: false},
     released: {type: DataTypes.DATE, allowNull: false , validate: {isDate: true}},
     rating: {type: DataTypes.DECIMAL, allowNull: false, validate: {isDecimal: true}},
     created: {type: DataTypes.BOOLEAN, defaultValue: true}

@@ -4,10 +4,10 @@ import styles from "./Card.module.css";
 import {GiAncientSword} from "react-icons/gi"
 import { useMemo } from "react";
 
-export default function Card ({id, name, backgroundImage, genres}) {
+export default function Card ({id, name, backgroundImage, genres, rating}) {
 
     const valueGen = useMemo(() => {
-
+    console.log(genres)
         switch (genres.length) {
             case 1:
                 return styles.backGround2Card
@@ -25,9 +25,11 @@ export default function Card ({id, name, backgroundImage, genres}) {
     return(
         <NavLink to={`/detail/${id}`} style={{textDecoration: 'none'}}>
             <div style={{backgroundImage: 'url(/images/CardFondo.jpg)'}} 
-                className={valueGen}>
+                className={valueGen}
+                >
                 <img className={styles.image} src={backgroundImage} alt="VideoGames"/>
                 <h1 className={styles.text}>{name}</h1>
+                <h1 className={styles.text}>{rating}</h1>
                 { genres.map((genre) => 
                 (<div key={genre} className={styles.text} style={{display: 'flex', flexDirection: 'row'}}>
                     <GiAncientSword size={'30px'} 
