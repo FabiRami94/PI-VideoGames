@@ -63,10 +63,11 @@ export default function FormPage () {
         return isDisable;
     }
 
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault();    
         try {    
-            axios.post('http://localhost:3001/createvideogame', newGameData).then(res => alert(res));
+            await axios.post('http://localhost:3001/createvideogame', newGameData).then(res => alert('Juego creado exitosamente'));
+
             setNewGameData({
                 name: '',
                 description: '',
@@ -86,7 +87,8 @@ export default function FormPage () {
                 genres: 'The genres is required*', 
             });
         } catch (error) {
-            window.alert(error)
+            window.alert('The name of the video game already exists, reresh and try again');
+            window.location.reload();
         }
     }
 

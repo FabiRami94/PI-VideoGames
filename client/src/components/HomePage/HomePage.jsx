@@ -11,17 +11,21 @@ import {    getVideoGames,
             filterGamesByCreator, 
             filterGamesByRating, 
             filterGamesByAlphabet,} from "../../redux/actions/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
 
 export default function HomePage (){
 
+    let [loading, setLoading] = useState(true);
+
     const dispatch = useDispatch();
 
     useEffect(()=>{
+        setLoading(true);
         dispatch(getVideoGames());
+        setLoading(false);
     },[dispatch]);
 
     const videoGamesByName = useSelector(state => state.videoGamesByName);
@@ -67,7 +71,6 @@ export default function HomePage (){
                         <h3 className={styles.letters}>Genre</h3>
                         <select className={styles.generalButton} onChange={handleFilterByGenre}>
                             <option value={'S'}>Select</option>
-                            <option value={'A'}>All</option>
                             {genresArray.map((genre) => (                                                      
                                 <option key={genre} value={genre}>{genre}</option>                            
                             ))}
@@ -76,7 +79,7 @@ export default function HomePage (){
                     <div>
                         <h3 className={styles.letters}>Creator</h3>
                         <select className={styles.generalButton} onChange={handleFilterByCreator}>
-                            <option>Select</option>
+                            <option value={'S'}>Select</option>
                             <option value={'true'}>Owm</option>
                             <option value={'false'}>Other</option>
                         </select>
@@ -98,9 +101,10 @@ export default function HomePage (){
                         </select>
                     </div>
                 </div>
-                <div className={styles.Tarjetas}>
+                {!loading && (                 
+                <div className={styles.Tarjetas}>   
                     {videoGamesByName.flat().map((gameN) => (    
-                        <Card           
+                        <Card style={{backgroundImage: 'url(/images/HomeFondo.jpg)'}} className={styles.generalBackground}          
                         key={gameN.id}
                         id={gameN.id} 
                         backgroundImage={gameN.background_image}
@@ -110,7 +114,12 @@ export default function HomePage (){
                         ></Card>
                         ))}
                     <Cards></Cards>
-                </div>                                 
+                </div>  )}
+                {loading && <div style={{ position: 'relative' }}>     
+                        <div>  
+                            <h1 style={{color: 'white', fontSize: '100px', padding: '200px'}}> Loading...</h1>                     
+                        </div>  
+                </div>}
             </div>         
         </div>
     )
@@ -131,3 +140,8 @@ export default function HomePage (){
 // orden alfabético y por rating.
 // Paginado: el listado de videojuegos se hará por partes. Tu SPA debe contar con un paginado que 
 // muestre un total de 15 videojuegos por página
+
+
+
+
+    

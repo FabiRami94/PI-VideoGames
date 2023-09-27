@@ -9,6 +9,14 @@ const {Videogame , Genre} = require('../db');
 
 const createVideoGame = async (name, description, platforms, background_image, released, rating, genres) => {
 
+    const existingVideoGame = await Videogame.findOne({
+        where: { name }
+    });
+
+    if (existingVideoGame) {
+        throw new Error('The name of the video game already exists.');
+    }
+
     const newVideoGame = await Videogame.create({
         name, description, platforms, background_image, released , rating 
     });
@@ -22,7 +30,6 @@ const createVideoGame = async (name, description, platforms, background_image, r
     })
 
     return newVideoGame;
-    
 };
 
 module.exports = createVideoGame;

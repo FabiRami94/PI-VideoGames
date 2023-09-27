@@ -32,7 +32,8 @@ function rootReducer (state = initialState, action) {
         case RESET_GAMES_BY_NAME:
             return {...state, videoGamesByName: action.payload};
 
-        case FILTER_GAMES_BY_GENRE:             
+        case FILTER_GAMES_BY_GENRE: 
+
             const filteredGenres = state.videoGamesGenres.filter((
                 game) => game.genres.includes(action.payload)
             );
@@ -40,6 +41,12 @@ function rootReducer (state = initialState, action) {
             const filteredGenresByName = state.videoGamesGenresByName.flat().filter((
                 game) => game.genres.includes(action.payload)
             );
+
+            if (action.payload === 'S') {
+                window.alert('¡You must select a gender!');
+                return state; 
+            } 
+
             return {...state, videoGames: filteredGenres, videoGamesByName: filteredGenresByName
             };
 
@@ -51,15 +58,24 @@ function rootReducer (state = initialState, action) {
             if(action.payload === 'true'){
                 filteredOwns = filteredOwns.filter((
                     own) => own.created === true);
-                filteredOwnsByName = filteredOwnsByName.filter((
-                    own) => own.created === true);
-                   
-            } else if(action.payload === 'false'){
-                filteredOwns = filteredOwns.filter((
-                    own) => own.created === false);
-                filteredOwnsByName = filteredOwnsByName.filter((
-                    own) => own.created === false);     
-            } 
+                    filteredOwnsByName = filteredOwnsByName.filter((
+                        own) => own.created === true);
+                        
+                    } else if(action.payload === 'false'){
+                        filteredOwns = filteredOwns.filter((
+                            own) => own.created === false);
+                            filteredOwnsByName = filteredOwnsByName.filter((
+                                own) => own.created === false);     
+                            } else if (action.payload === 'S') {
+                                window.alert('¡You must select a creator!');
+                                return state; 
+                            } 
+                        
+            if (filteredOwnsByName.length < 1 && action.payload === 'true') {
+                window.alert('No video games were found with that feature.');
+            } else if (filteredOwns.length < 1 && action.payload === 'false'){
+                window.alert('No video games were found with that feature.');
+            }
    
             return {...state, videoGames: filteredOwns, videoGamesByName: filteredOwnsByName};
 
@@ -75,6 +91,7 @@ function rootReducer (state = initialState, action) {
                 gamesRating.sort((a, b) => a.rating - b.rating);
                 gamesRatingByName.sort((c, d) => c.rating - d.rating);
             } else if(action.payload === 'S'){
+                window.alert('¡You must select a rating, they will be organized by Id!');
                 gamesRating.sort((a, b) => b.id - a.id);
                 gamesRatingByName.sort((c, d) => c.id - d.id);
             }
@@ -93,6 +110,7 @@ function rootReducer (state = initialState, action) {
                 sortedCharacters.sort((a, b) => b.name.localeCompare(a.name));
                 sortedCharactersByName.sort((c, d) => d.name.localeCompare(c.name));
             } else if(action.payload === 'S'){
+                window.alert('¡You must select a alphabet, they will be organized by Id!');
                 sortedCharacters.sort((a, b) => b.id - a.id);
                 sortedCharactersByName.sort((c, d) => c.id - d.id);
             }

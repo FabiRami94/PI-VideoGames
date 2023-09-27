@@ -12,9 +12,18 @@ import axios from 'axios';
 export const getVideoGames = () => {
     return async function (dispatch){
 
+    try {
         const videoGames = (await axios.get('http://localhost:3001/videogames')).data;
+        
+        if (videoGames.length === 0) {
+            window.alert('there is no connection with the api.');
+        } else {
+            dispatch({type: GET_GAMES, payload: videoGames});       
+        }
+    } catch (error) {
+        window.alert({error: error.message});
+    }
 
-        dispatch({type: GET_GAMES, payload: videoGames});
     }
 };
 
@@ -22,11 +31,20 @@ export const getVideoGamesByName = (name) => {
     return async function (dispatch){
 
         let nameTransformed = name.toLowerCase();
-   
-            const videoGamesByName = (await axios.get(
-              `http://localhost:3001/videogames/?name=${nameTransformed}`)).data;  
 
-        dispatch({type: GET_GAMES_BY_NAME, payload: videoGamesByName});
+        try {
+            const videoGamesByName = (await axios.get(
+                `http://localhost:3001/videogames/?name=${nameTransformed}`)).data;
+    
+            if (videoGamesByName.length === 0) {
+                window.alert('No video games with that name were found.');
+            } else {
+                dispatch({type: GET_GAMES_BY_NAME, payload: videoGamesByName});
+            }
+        } catch (error) {
+            console.error('Error when searching for video games by name:', error);
+            window.alert('An error occurred when searching for video games by name.');
+        }
     }
 }
 

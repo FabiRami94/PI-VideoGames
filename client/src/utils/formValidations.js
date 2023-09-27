@@ -24,7 +24,7 @@ const validations = (state, name, setErrors, errors) => {
     }
 
     if(name === "platform"){
-        if(state.platforms.length > 0){
+        if(state.platforms.length <= 0){
             setErrors({...errors, platforms: 'The field is required, the platforms has not been empty.'}) 
         } else {setErrors({...errors, platforms: ''})}
     }
@@ -58,7 +58,7 @@ const validations = (state, name, setErrors, errors) => {
     }
 
     if(name === "genre"){
-        if(state.genres.length > 0){
+        if(state.genres.length <= 0){
             setErrors({...errors, genres: 'The field is required, the genres has not been empty.'}) 
         } else {setErrors({...errors, genres: ''})}
     }
