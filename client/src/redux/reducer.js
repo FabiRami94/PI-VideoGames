@@ -96,8 +96,8 @@ function rootReducer (state = initialState, action) {
                 sortedCharacters.sort((a, b) => b.id - a.id);
                 sortedCharactersByName.sort((c, d) => c.id - d.id);
             }
-
             return {...state, videoGames: sortedCharacters, videoGamesByName: sortedCharactersByName};
+
         default: 
             return {...state}
     }

@@ -17,13 +17,13 @@ export default function FormPage () {
     });
 
     const [errors, setErrors] = useState({
-        name: '',
-        description: '',
-        platforms: [],
-        background_image: '',
-        released: '',
-        rating: '',
-        genres: [],   
+        name: 'The name is required*',
+        description: 'The description is required*',
+        platforms: 'The platforms is required*',
+        background_image: 'The image is required*',
+        released: 'The released is required*',
+        rating: 'The rating is required*',
+        genres: 'The genres is required*',   
     });
 
     const handleChange = (event) => {
@@ -34,16 +34,14 @@ export default function FormPage () {
           const newGenres = [...newGameData.genres];        
           if (event.target.checked) {
               newGenres.push(value);
-              console.log(newGenres)
           } else {
             newGenres.splice(newGenres.indexOf(value), 1);
           }  
-          setNewGameData({ ...newGameData, genres: newGenres });
+          setNewGameData({ ...newGameData, genres: newGenres },);
         } else if(name === 'platform'){
             const newPlatform = [...newGameData.platforms];
             if (event.target.checked) {
                 newPlatform.push(value);
-                console.log(newPlatform)
             } else {
               newPlatform.splice(newPlatform.indexOf(value), 1);
             } 
@@ -51,14 +49,42 @@ export default function FormPage () {
         } else {
           setNewGameData({ ...newGameData, [name]: value });
         }   
-        setErrors(validations({ ...newGameData, [name]: value }));
-        console.log(event.target.value); 
-      };
+        validations({...newGameData, [name]: value}, name, setErrors, errors)
+    };
+ 
+    const buttonDisable = () => {
+        let isDisable;
+        for(let error in errors){
+            if(errors[error] === ""){
+                isDisable = false
+            } else {isDisable = true; 
+                break};
+        } 
+        return isDisable;
+    }
 
     const submitHandler = (event) => {
-        event.preventDefault();
+        event.preventDefault();    
         try {    
             axios.post('http://localhost:3001/createvideogame', newGameData).then(res => alert(res));
+            setNewGameData({
+                name: '',
+                description: '',
+                platforms: [],
+                background_image: '',
+                released: '',
+                rating: '',
+                genres: [],   
+            });
+            setErrors({
+                name: 'The name is required*',
+                description: 'The description is required*',
+                platforms: 'The platforms is required*',
+                background_image: 'The image is required*',
+                released: 'The released is required*',
+                rating: 'The rating is required*',
+                genres: 'The genres is required*', 
+            });
         } catch (error) {
             window.alert(error)
         }
@@ -77,6 +103,7 @@ export default function FormPage () {
                             <input 
                                 className={styles.generalInput}
                                 onChange={handleChange} 
+                                type="text" 
                                 name='name' 
                                 value={newGameData.name} 
                                 placeholder="Write a game name..."></input>
@@ -107,6 +134,7 @@ export default function FormPage () {
                                         {platform}</label>
                             ))}
                         </div>
+                        <p>{errors.platforms}</p>
                         <div style={{marginTop: '20px'}}>
                             <label className={styles.letters}>Image:</label>
                             <input 
@@ -116,6 +144,7 @@ export default function FormPage () {
                                 value={newGameData.background_image}
                                 style={{width: '250px'}}></input>
                         </div>
+                        <p>{errors.background_image}</p>
                         <div style={{marginTop: '20px'}}>
                             <label className={styles.letters}>Released:</label>
                             <input 
@@ -123,7 +152,7 @@ export default function FormPage () {
                                 onChange={handleChange}  
                                 name='released' 
                                 value={newGameData.released}
-                                type="date" 
+                                type="text" 
                                 style={{width: '150px'}}></input>
                         </div>
                         <p>{errors.released}</p>
@@ -134,8 +163,8 @@ export default function FormPage () {
                                 onChange={handleChange}  
                                 name='rating' 
                                 value={newGameData.rating} 
-                                type="number" min="1" max="5" step="0.5"
-                                placeholder="Choose a number..." 
+                                type="text" 
+                                placeholder="Choose a number from 1 to 5..." 
                                 style={{width: '200px'}}></input>
                         </div>
                         <p>{errors.rating}</p>
@@ -151,8 +180,9 @@ export default function FormPage () {
                                     />{genre}</label>
                             ))}
                         </div>
+                        <p>{errors.genres}</p>
                         <div>
-                            <button className={styles.generalButton}>CREATE VIDEO GAME</button>
+                            <button disabled={buttonDisable()} className={styles.generalButton}>CREATE VIDEO GAME</button>
                         </div>
                     </form>
             </div>
@@ -201,6 +231,7 @@ export default function FormPage () {
                     <div style={{height: '20px'}}></div>
                 </div>
             </div>
+            <div style={{height : '1px'}}></div>
         </div>
     )
 }

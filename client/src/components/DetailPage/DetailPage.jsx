@@ -34,22 +34,33 @@ export default function DetailPage () {
     });
 
     return( 
-      <div>
+      <div style={{backgroundImage: 'url(/images/DetailFondo.jpg)'}} className={styles.generalBackground}>
         <div style={{height: '2px', backgroundColor:'rgb(213, 0, 0)'}}></div>
-        <div style={{backgroundImage: 'url(/images/DetailFondo.jpg)'}} className={styles.generalBackground}>
+        <div>
           <div className={styles.secondBackground}>
-            <button onClick={back}>Back</button>
-            <h2>ID: {id}</h2>
-            <h2>Name: {videoGame.name}</h2>
-            <img src={videoGame.background_image} alt="videoGamesDetail" style={{ width: '250px' }}/>
-            <img src={videoGame.background_image_additional} alt="videoGamesDetail" style={{ width: '250px' }}/>
-            <h2>Platforms: {videoGame.platforms}</h2>
-            {description}
+            <button className={styles.buttonBack} onClick={back}>Back</button>
+            <h4>ID: {id}</h4>
+            <h1>Name: {videoGame.name}</h1>
+            <img src={videoGame.background_image} alt="videoGamesDetail" style={{ width: '400px', borderRadius: '30px'}}/>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+              <h2>Platforms: {videoGame.platforms?.map((ele) =>(
+                <ul>
+                  <li className={styles.letters1}>{ele}</li>
+                </ul>
+              ))}</h2>
+              <h2>Genres: {videoGame.genres?.map((ele) =>(
+                <ul>
+                  <li className={styles.letters1}>{ele}</li>
+                </ul>
+              ))}</h2>
+            </div>
+            <div style={{margin: '5px 50px 5px 50px'}}>
+              {description}
+            </div>
             <h2>Released: {videoGame.released}</h2>
-            <h2>Rating: {videoGame.rating}</h2>
-            <h2>Genres: {videoGame.genres}</h2>
-            <a href={videoGame.website} target="_blank" rel="noreferrer">Link: {videoGame.website}</a>
+            <h2 style={{paddingBottom: '20px'}}>Rating: {videoGame.rating}</h2>
           </div>
+          <div style={{height: '1px'}}></div>
         </div>
       </div>
     )

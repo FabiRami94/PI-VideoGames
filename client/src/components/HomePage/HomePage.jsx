@@ -10,7 +10,7 @@ import {    getVideoGames,
             filterGamesByGenre, 
             filterGamesByCreator, 
             filterGamesByRating, 
-            filterGamesByAlphabet } from "../../redux/actions/actions";
+            filterGamesByAlphabet,} from "../../redux/actions/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -66,7 +66,8 @@ export default function HomePage (){
                     <div>
                         <h3 className={styles.letters}>Genre</h3>
                         <select className={styles.generalButton} onChange={handleFilterByGenre}>
-                            <option>Select</option>
+                            <option value={'S'}>Select</option>
+                            <option value={'A'}>All</option>
                             {genresArray.map((genre) => (                                                      
                                 <option key={genre} value={genre}>{genre}</option>                            
                             ))}
@@ -109,8 +110,8 @@ export default function HomePage (){
                         ></Card>
                         ))}
                     <Cards></Cards>
-                </div>                                  
-            </div>
+                </div>                                 
+            </div>         
         </div>
     )
 }

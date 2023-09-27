@@ -19,13 +19,14 @@ export default function SearchBar({onSearch}){
 
     const resetSearch = () => {
         dispatch(resetGamesByName());
+        setName('');
     }
    
     return(
         <div>
             <div className={styles.divGeneral}>
                 <label className={styles.letter}>Search by name:</label>
-                <input className={styles.generalInput} type='search' placeholder="Write a name..." onChange={handleChange}></input>
+                <input className={styles.generalInput} type='search' placeholder="Write a name..." value={name} onChange={handleChange}></input>
                 <button className={styles.generalButton} onClick={search}>Send</button>
                 <button className={styles.generalButton} onClick={resetSearch}>Reset Search</button>
             </div>

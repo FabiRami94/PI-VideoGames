@@ -4,7 +4,7 @@ import styles from "./Card.module.css";
 import {GiAncientSword} from "react-icons/gi"
 import { useMemo } from "react";
 
-export default function Card ({id, name, backgroundImage, genres, rating}) {
+export default function Card ({id, name, backgroundImage, genres}) {
 
     const valueGen = useMemo(() => {
         
@@ -28,18 +28,17 @@ export default function Card ({id, name, backgroundImage, genres, rating}) {
                 className={valueGen}
                 >
                 <img className={styles.image} src={backgroundImage} alt="VideoGames"/>
-                <h1 className={styles.text}>{name}</h1>
-                <h1 className={styles.text}>{rating}</h1>
+                <h2 className={styles.title}>{name}</h2>
                 { genres.map((genre) => 
-                (<div key={genre} className={styles.text} style={{display: 'flex', flexDirection: 'row'}}>
+                (<div key={genre} style={{display: 'flex', flexDirection: 'row'}}>
                     <GiAncientSword size={'30px'} 
                         style={{
-                            margin: '10px', 
+                            margin: '10px 10px 0px 10px', 
                             color: 'white',
                             border: '2px solid rgb(213, 0, 0)',
                             borderRadius: '15px'
                             }}></GiAncientSword>
-                    <h3>{genre}</h3>
+                    <h4 className={styles.text}>{genre}</h4>
                 </div>))}           
             </div>
         </NavLink>
